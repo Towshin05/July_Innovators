@@ -187,24 +187,13 @@ Streamlit opens at <http://localhost:8501>.
 git clone https://github.com/yourusername/WitnessBridgeAI.git
 
 cd WitnessBridgeAI
-## Installation
-
-```bash
-git clone https://github.com/yourusername/WitnessBridgeAI.git
-
-cd WitnessBridgeAI
-
 ```
+
+
 
 ---
 
-## Environment Variables
 
-Create a `.env` file.
-
-```
-OPENROUTER_API_KEY=your_api_key
-```
 
 
 
