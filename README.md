@@ -2,7 +2,7 @@
 
 AI-powered evidence intelligence platform that transforms raw citizen-submitted evidence into structured media briefs.
 
-Built for a 2-day AI Hackathon using Streamlit, Python, SQLite, OCR, Vision AI, and OpenRouter.
+Built for a 3-days AI Hackathon using Streamlit, Python, SQLite, OCR, Vision AI, and OpenRouter.
 
 ---
 
@@ -194,9 +194,6 @@ git clone https://github.com/yourusername/WitnessBridgeAI.git
 
 cd WitnessBridgeAI
 
-pip install -r requirements.txt
-
-streamlit run app.py
 ```
 
 ---
@@ -252,27 +249,6 @@ OPENROUTER_API_KEY=your_api_key
 
 ---
 
-## 🛡 Resilience features
-
-The free OpenRouter tier is flaky. The pipeline is hardened against the common
-breakages:
-
-- **Truncation detection** — `_looks_truncated()` checks brace and quote balance
-  on every response. Truncated JSON triggers a *continue-from-where-you-left-off*
-  second turn before giving up.
-- **JSON repair** — strips Markdown fences, greedy regex from the first `{` to
-  the last `}`, closes unterminated strings and braces.
-- **Model fallback chain** — primary + 3 backups; when an image is attached, the
-  chain is restricted to vision-capable models so non-vision endpoints can't
-  poison the run with 404s.
-- **Schema-level errors** — `Incident.visual_description` column exists even if
-  the upload is a PDF, so re-running on an older database never raises
-  `OperationalError`.
-- **Prompt escaping** — uses `string.Template` with `$evidence_text` so the JSON
-  schema example in the prompt (full of `{` / `}`) is never re-interpreted as
-  format placeholders.
-
----
 
 ## 🗄 Database schema
 
