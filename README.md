@@ -1,42 +1,98 @@
 # WitnessBridge AI
 
-> **Citizen evidence intelligence platform** for journalists, NGOs, and humanitarian
-> organizations. Upload photos, scanned documents, or PDFs of citizen-submitted
-> evidence and get back a structured media brief plus a downloadable A4 PDF.
+AI-powered evidence intelligence platform that transforms raw citizen-submitted evidence into structured media briefs.
 
-Built for a 2-day hackathon. Single-page Streamlit UI, local SQLite storage, and a
-Python-only pipeline that calls a free vision-capable LLM via OpenRouter.
+Built for a 2-day AI Hackathon using Streamlit, Python, SQLite, OCR, Vision AI, and OpenRouter.
 
 ---
 
-## 🌍 The problem
+## Problem
 
-When a protest, a disaster, or a human-rights violation happens, the people on
-the ground often have **raw evidence in their pockets** — smartphone photos,
-screenshots, scanned documents, voice notes — but **no safe, fast way to turn
-that chaos into something a journalist, NGO, or human-rights monitor can act
-on**.
+Journalists, NGOs, and humanitarian organizations often receive large volumes of unstructured evidence such as photos, scanned documents, and reports during disasters, protests, or humanitarian crises.
 
-Practitioners report the same pain points again and again:
+Processing this evidence manually is slow and difficult because:
 
-- **Hours, not minutes.** A reporter receives 200 photos from a single incident
-  in seven languages. Manually transcribing, sorting, and writing a brief can
-  eat an entire day.
-- **No structure.** A folder of JPEGs is not a story. Editors need a category, a
-  location, a date, and a short factual summary before they can even decide
-  whether to publish.
-- **Source-safety risk.** Cloud-based "AI" tools often upload the evidence to
-  third-party servers, exposing sources and breaking chain-of-custody.
-- **Lost context.** A photo of a fire without a location and a date is just a
-  photo. The metadata *is* the value.
-- **Bengali + English mix.** Most off-the-shelf tools handle English only,
-  which excludes a huge share of South-Asian evidence.
+- Images and scanned documents must be transcribed before analysis.
+- Evidence arrives in multiple languages, especially Bengali and English.
+- Important information such as location, date, and key facts is buried inside raw files.
+- Writing a factual media brief takes significant manual effort.
+- Large volumes of evidence become difficult to organize quickly during emergencies.
 
-**WitnessBridge AI turns that raw pile into a structured, source-safe, locally
-stored brief in under a minute**, while keeping every file on the journalist's
-own machine.
+WitnessBridge AI automates this workflow by extracting information from uploaded evidence, analyzing it with AI, and generating a structured report within minutes.
 
 ---
+
+## Solution
+
+WitnessBridge AI provides an end-to-end pipeline that:
+
+- Uploads images and PDF documents
+- Extracts text using OCR and PDF processing
+- Uses a Vision AI model to describe image content
+- Combines extracted information into a unified evidence context
+- Translates Bengali content to English when required
+- Analyzes the evidence using GPT-OSS via OpenRouter
+- Generates:
+  - Incident category
+  - Location
+  - Timeline
+  - Key facts
+  - News headline
+  - Structured media brief
+- Stores all results locally in SQLite
+- Exports professional PDF reports using ReportLab
+
+---
+
+
+## Tech Stack
+
+- Python
+- Streamlit
+- SQLite
+- SQLAlchemy
+- EasyOCR
+- PyMuPDF
+- Pillow
+- ReportLab
+- OpenRouter API
+- GPT-OSS-20B
+- Vision-capable LLM
+
+---
+
+## Project Workflow
+
+```
+User Upload
+      │
+      ▼
+Image / PDF
+      │
+      ▼
+OCR + PDF Extraction + Vision Analysis
+      │
+      ▼
+Combined Evidence Text
+      │
+      ▼
+GPT-OSS (OpenRouter)
+      │
+      ▼
+Structured JSON Analysis
+      │
+      ▼
+SQLite Storage
+      │
+      ▼
+PDF Media Brief
+```
+
+---
+
+
+
+
 
 ## ✨ Features
 
@@ -125,6 +181,35 @@ OPENROUTER_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxx
 Streamlit opens at <http://localhost:8501>.
 
 ---
+## Installation
+
+```bash
+git clone https://github.com/yourusername/WitnessBridgeAI.git
+
+cd WitnessBridgeAI
+## Installation
+
+```bash
+git clone https://github.com/yourusername/WitnessBridgeAI.git
+
+cd WitnessBridgeAI
+
+pip install -r requirements.txt
+
+streamlit run app.py
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file.
+
+```
+OPENROUTER_API_KEY=your_api_key
+```
+
+
 
 ## 🧠 How the pipeline works
 
