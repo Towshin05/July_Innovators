@@ -1,21 +1,30 @@
 
-streamlit==1.37.0
+# streamlit==1.37.0
 
 
-sqlalchemy==2.0.34
+# sqlalchemy==2.0.34
 
-python-dotenv==1.0.1
-
-
-requests==2.32.3
+# python-dotenv==1.0.1
 
 
-easyocr==1.7.1
-
-pillow==10.4.0
-numpy==1.26.4
-
-pymupdf==1.24.10
+# requests==2.32.3
 
 
-reportlab==4.2.2
+# easyocr==1.7.1
+
+# pillow==10.4.0
+# numpy==1.26.4
+
+# pymupdf==1.24.10
+
+
+# reportlab==4.2.2
+streamlit
+sqlalchemy
+python-dotenv
+requests
+easyocr
+Pillow>=11.3.0
+numpy
+PyMuPDF
+reportlab
